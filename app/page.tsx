@@ -7,19 +7,27 @@ import "./../app/app.css";
 import { Amplify } from "aws-amplify";
 import outputs from "@/amplify_outputs.json";
 import "@aws-amplify/ui-react/styles.css";
-
+import { useAuthenticator } from "@aws-amplify/ui-react";
 Amplify.configure(outputs);
 
 const client = generateClient<Schema>();
-
 export default function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-
+const { signOut } = useAuthenticator();
+  
+ 
   function listTodos() {
     client.models.Todo.observeQuery().subscribe({
       next: (data) => setTodos([...data.items]),
     });
   }
+    
+  function deleteTodo(id: string) {
+    if (confirm("Supprimer ce todo ?")) {
+      client.models.Todo.delete({ id });
+    }
+  }
+  
 
   useEffect(() => {
     listTodos();
@@ -36,8 +44,11 @@ export default function App() {
       <h1>My todos</h1>
       <button onClick={createTodo}>+ new</button>
       <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
+      {todos.map(todo => (
+        <li key={todo.id}>
+            {todo.content}
+            <button onClick={() => deleteTodo(todo.id)}>🗑</button>
+        </li>
         ))}
       </ul>
       <div>
@@ -46,6 +57,7 @@ export default function App() {
         <a href="https://docs.amplify.aws/nextjs/start/quickstart/nextjs-app-router-client-components/">
           Review next steps of this tutorial.
         </a>
+        <button onClick={signOut}>Sign out</button>
       </div>
     </main>
   );

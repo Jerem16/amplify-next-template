@@ -7,15 +7,15 @@ body {
     width: 100vw;
     justify-content: center;
     align-items: center;
-  }
-  
-  main {
+}
+
+main {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-  }
-  
-  button {
+}
+
+button {
     border-radius: 8px;
     border: 1px solid transparent;
     padding: 0.6em 1.2em;
@@ -26,16 +26,18 @@ body {
     cursor: pointer;
     transition: border-color 0.25s;
     color: white;
-  }
-  button:hover {
+    float: right;
+}
+button:hover {
     border-color: #646cff;
-  }
-  button:focus,
-  button:focus-visible {
+    background-color: #646cff;
+}
+button:focus,
+button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
-  }
-  
-  ul {
+}
+
+ul {
     padding-inline-start: 0;
     margin-block-start: 0;
     margin-block-end: 0;
@@ -48,18 +50,21 @@ body {
     background-color: black;
     border-radius: 8px;
     overflow: auto;
-  }
-  
-  li {
+}
+
+li {
     background-color: white;
     padding: 8px;
-  }
-  
-  li:hover {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+li:hover {
     background: #dadbf9;
-  }
-  
-  a {
+}
+
+a {
     font-weight: 800;
     text-decoration: none;
-  }
+}
