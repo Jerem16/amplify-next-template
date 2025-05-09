@@ -8,9 +8,9 @@ This template equips you with a foundational Next.js application integrated with
 
 ## Features
 
-- **Authentication**: Setup with Amazon Cognito for secure user authentication.
-- **API**: Ready-to-use GraphQL endpoint with AWS AppSync.
-- **Database**: Real-time database powered by Amazon DynamoDB.
+-   **Authentication**: Setup with Amazon Cognito for secure user authentication.
+-   **API**: Ready-to-use GraphQL endpoint with AWS AppSync.
+-   **Database**: Real-time database powered by Amazon DynamoDB.
 
 ## Deploying to AWS
 
@@ -23,3 +23,7 @@ See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more inform
 ## License
 
 This library is licensed under the MIT-0 License. See the LICENSE file.
+
+aws sts get-caller-identity --profile amplify-admin | Out-Host
+
+npx ampx sandbox --profile amplify-admin
