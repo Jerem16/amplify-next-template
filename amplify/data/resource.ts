@@ -1,7 +1,16 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 
 const schema = a.schema({
-    Todo: a
+    AdminTodo: a
+        .model({
+            content: a.string(),
+        })
+        .authorization((allow) => [
+            allow.groups(["ADMINS"]).to(["create", "update", "delete", "read"]),
+            // allow.publicApiKey().to(["read"]),
+        ]),
+
+    PublicTodo: a
         .model({
             content: a.string(),
         })
@@ -14,5 +23,8 @@ export const data = defineData({
     schema,
     authorizationModes: {
         defaultAuthorizationMode: "userPool",
+        apiKeyAuthorizationMode: {
+            expiresInDays: 30,
+        },
     },
 });
