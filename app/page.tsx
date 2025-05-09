@@ -6,6 +6,7 @@ import outputs from "@/amplify_outputs.json";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useEffect, useState } from "react";
 import { fetchAuthSession } from "aws-amplify/auth";
+import AdminPublicTodos from "@/src/components/AdminPublicTodos";
 
 import AdminTodo from "@/src/components/AdminTodo";
 import UserTodo from "@/src/components/UserTodo";
@@ -35,6 +36,7 @@ export default function App() {
             <h1>Welcome {user?.signInDetails?.loginId}</h1>
             {isAdmin ? <AdminTodo /> : <UserTodo />}
             <button onClick={signOut}>Sign out</button>
+            <AdminPublicTodos />;
         </main>
     );
 }
