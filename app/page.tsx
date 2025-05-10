@@ -18,7 +18,7 @@ export default function Page() {
     return (
         <main>
             <h1>AdminTodo</h1>
-            <AdminTodoViewer fileName="example.txt" />
+            <AdminTodoViewer fileName="amplify_outputs(8).json" />
         </main>
     );
 }

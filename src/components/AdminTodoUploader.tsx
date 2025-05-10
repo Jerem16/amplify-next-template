@@ -1,11 +1,36 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { uploadData } from "aws-amplify/storage";
+import { fetchAuthSession } from "aws-amplify/auth";
 
 export default function AdminTodoUploader() {
     const [file, setFile] = useState<File | null>(null);
     const [message, setMessage] = useState("");
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [loading, setLoading] = useState(true);
+
+    // Vérifie si l'utilisateur est dans le groupe ADMINS
+    useEffect(() => {
+        const checkAdminGroup = async () => {
+            try {
+                const session = await fetchAuthSession();
+                const groups: string[] | undefined =
+                    session.tokens?.accessToken?.payload["cognito:groups"];
+                setIsAdmin(groups?.includes("ADMINS") || false);
+            } catch (err) {
+                console.error(
+                    "Erreur lors de la vérification du groupe :",
+                    err
+                );
+                setIsAdmin(false);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        checkAdminGroup();
+    }, []);
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = event.target.files?.[0] || null;
@@ -34,6 +59,16 @@ export default function AdminTodoUploader() {
             setMessage("Erreur pendant l'upload.");
         }
     };
+
+    if (loading) {
+        return <p>Vérification des autorisations...</p>;
+    }
+
+    if (!isAdmin) {
+        return (
+            <p>Accès refusé. Cette section est réservée aux administrateurs.</p>
+        );
+    }
 
     return (
         <div>
