@@ -6,8 +6,8 @@ const schema = a.schema({
             content: a.string(),
         })
         .authorization((allow) => [
-            allow.publicApiKey().to(["read"]),
             allow.groups(["ADMINS"]).to(["create", "update", "delete", "read"]),
+            allow.owner().to(["read"]),
         ]),
 
     PublicTodo: a
