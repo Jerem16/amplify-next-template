@@ -7,16 +7,16 @@ import type { Schema } from "@/amplify/data/resource";
 const publicClient = generateClient<Schema>();
 
 export default function PublicAdminTodos() {
-    const [todos, setTodos] = useState<Schema["AdminTodo"]["type"][]>([]);
+    const [todos] = useState<Schema["AdminTodo"]["type"][]>([]);
 
-    useEffect(() => {
-        publicClient.models.AdminTodo.list()
-            .then((result) => {
-                console.log("AdminTodos publics via API Key", result);
-                setTodos(result.data);
-            })
-            .catch((err) => console.error("Erreur lecture publique", err));
-    }, []);
+    // useEffect(() => {
+    //     publicClient.models.AdminTodo.list()
+    //         .then((result) => {
+    //             console.log("AdminTodos publics via API Key", result);
+    //             setTodos(result.data);
+    //         })
+    //         .catch((err) => console.error("Erreur lecture publique", err));
+    // }, []);
 
     return (
         <section>
