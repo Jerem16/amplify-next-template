@@ -12,31 +12,13 @@ import AdminTodo from "@/src/components/AdminTodo";
 import UserTodo from "@/src/components/UserTodo";
 import "@aws-amplify/ui-react/styles.css";
 
-// Amplify.configure(outputs);
+import AdminTodoViewer from "@/src/components/AdminTodoViewer";
 
-export default function App() {
-    const { user, signOut } = useAuthenticator();
-    const [isAdmin, setIsAdmin] = useState(false);
-
-    useEffect(() => {
-        async function checkGroup() {
-            const session = await fetchAuthSession();
-            const groups = session.tokens?.idToken?.payload["cognito:groups"];
-
-            if (Array.isArray(groups) && groups.includes("ADMINS")) {
-                setIsAdmin(true);
-            }
-        }
-
-        checkGroup();
-    }, []);
-
+export default function Page() {
     return (
         <main>
-            <h1>Welcome {user?.signInDetails?.loginId}</h1>
-            {isAdmin ? <AdminTodo /> : <UserTodo />}
-            <button onClick={signOut}>Sign out</button>
-            <AdminPublicTodos />;
+            <h1>AdminTodo</h1>
+            <AdminTodoViewer fileName="example.txt" />
         </main>
     );
 }
