@@ -9,7 +9,7 @@ type AdminTodoViewerProps = {
 type Todo = {
     id: number;
     title: string;
-    done: boolean;
+    completed: boolean;
 };
 export default function AdminTodoViewer({ fileName }: AdminTodoViewerProps) {
     const [todos, setTodos] = useState<Todo[]>([]);
