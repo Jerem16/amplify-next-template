@@ -9,6 +9,7 @@ const schema = a.schema({
         .authorization((allow) => [
             allow.groups(["ADMINS"]).to(["create", "update", "delete", "read"]),
             allow.owner().to(["read"]),
+            allow.guest().to(["read"]),
         ]),
 
     PublicTodo: a
