@@ -10,33 +10,36 @@ import AdminPublicTodos from "@/src/components/AdminPublicTodos";
 
 import AdminTodo from "@/src/components/AdminTodo";
 import UserTodo from "@/src/components/UserTodo";
+import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 
 Amplify.configure(outputs);
 
 export default function App() {
-    const { user, signOut } = useAuthenticator();
-    const [isAdmin, setIsAdmin] = useState(false);
+    // const { user, signOut } = useAuthenticator();
+    // const [isAdmin, setIsAdmin] = useState(false);
 
-    useEffect(() => {
-        async function checkGroup() {
-            const session = await fetchAuthSession();
-            const groups = session.tokens?.idToken?.payload["cognito:groups"];
+    // useEffect(() => {
+    //     async function checkGroup() {
+    //         const session = await fetchAuthSession();
+    //         const groups = session.tokens?.idToken?.payload["cognito:groups"];
 
-            if (Array.isArray(groups) && groups.includes("ADMINS")) {
-                setIsAdmin(true);
-            }
-        }
+    //         if (Array.isArray(groups) && groups.includes("ADMINS")) {
+    //             setIsAdmin(true);
+    //         }
+    //     }
 
-        checkGroup();
-    }, []);
+    //     checkGroup();
+    // }, []);
 
     return (
         <main>
-            <h1>Welcome {user?.signInDetails?.loginId}</h1>
-            {isAdmin ? <AdminTodo /> : <UserTodo />}
-            <button onClick={signOut}>Sign out</button>
-            <AdminPublicTodos />;
+            {/* <Authenticator>
+                <h1>Welcome {user?.signInDetails?.loginId}</h1>
+                {isAdmin ? <AdminTodo /> : <UserTodo />}
+                <button onClick={signOut}>Sign out</button>
+                <AdminPublicTodos />;
+            </Authenticator> */}
         </main>
     );
 }
