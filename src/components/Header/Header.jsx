@@ -4,7 +4,8 @@ import Link from "next/link";
 const Header = () => {
     return (
         <header>
-            <Link href={"./connection"}>Connection</Link>
+            <Link href={"./uploadPage"}>uploadPage</Link>
+            <Link href={"./"}>Home</Link>
         </header>
     );
 };
