@@ -1,8 +1,8 @@
 // app/page.tsx ou App.tsx
 "use client";
 
-import { Amplify } from "aws-amplify";
-import outputs from "@/amplify_outputs.json";
+// import { Amplify } from "aws-amplify";
+// import outputs from "@/amplify_outputs.json";
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { useEffect, useState } from "react";
 import { fetchAuthSession } from "aws-amplify/auth";
@@ -12,7 +12,7 @@ import AdminTodo from "@/src/components/AdminTodo";
 import UserTodo from "@/src/components/UserTodo";
 import "@aws-amplify/ui-react/styles.css";
 
-Amplify.configure(outputs);
+// Amplify.configure(outputs);
 
 export default function App() {
     const { user, signOut } = useAuthenticator();
