@@ -4,9 +4,7 @@ import { useEffect, useState } from "react";
 import { generateClient } from "aws-amplify/data";
 import type { Schema } from "@/amplify/data/resource";
 
-const publicClient = generateClient<Schema>({
-    authMode: "apiKey", // ← IMPORTANT pour lecture publique
-});
+const publicClient = generateClient<Schema>();
 
 export default function PublicAdminTodos() {
     const [todos, setTodos] = useState<Schema["AdminTodo"]["type"][]>([]);
