@@ -15,8 +15,11 @@ export default function AdminTodoUploader() {
         const checkAdminGroup = async () => {
             try {
                 const session = await fetchAuthSession();
-                const groups: string[] | undefined =
+                const rawGroups =
                     session.tokens?.accessToken?.payload["cognito:groups"];
+                const groups = Array.isArray(rawGroups)
+                    ? (rawGroups as string[])
+                    : undefined;
                 setIsAdmin(groups?.includes("ADMINS") || false);
             } catch (err) {
                 console.error(

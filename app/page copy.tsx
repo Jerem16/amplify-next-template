@@ -21,7 +21,12 @@ export default function App() {
     useEffect(() => {
         async function checkGroup() {
             const session = await fetchAuthSession();
-            const groups = session.tokens?.idToken?.payload["cognito:groups"];
+            const rawGroups =
+                session.tokens?.accessToken?.payload["cognito:groups"];
+            const groups = Array.isArray(rawGroups)
+                ? (rawGroups as string[])
+                : undefined;
+            setIsAdmin(groups?.includes("ADMINS") || false);
 
             if (Array.isArray(groups) && groups.includes("ADMINS")) {
                 setIsAdmin(true);
