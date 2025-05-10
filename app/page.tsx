@@ -13,12 +13,13 @@ import UserTodo from "@/src/components/UserTodo";
 import "@aws-amplify/ui-react/styles.css";
 
 import AdminTodoViewer from "@/src/components/AdminTodoViewer";
-
+import TodoList from "@/src/components/TodoList";
 export default function Page() {
     return (
         <main>
             <h1>AdminTodo</h1>
             <AdminTodoViewer fileName="amplify_outputs(8).json" />
+            
         </main>
     );
 }
