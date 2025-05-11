@@ -17,19 +17,7 @@ export default function RootLayout({
         <html lang="en">
             <body>
                 <Header />
-                <Authenticator>
-                    {({ signOut, user }) => (
-                        <>
-                            <div style={{ padding: "1rem" }}>
-                                <p>Bienvenue, {user?.username}</p>
-                                <button onClick={signOut}>
-                                    Se déconnecter
-                                </button>
-                            </div>
-                            {children}
-                        </>
-                    )}
-                </Authenticator>
+                {children}
             </body>
         </html>
     );

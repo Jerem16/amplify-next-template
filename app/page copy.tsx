@@ -11,7 +11,7 @@ import AdminPublicTodos from "@/src/components/AdminPublicTodos";
 import AdminTodo from "@/src/components/AdminTodo";
 import UserTodo from "@/src/components/UserTodo";
 import "@aws-amplify/ui-react/styles.css";
-
+import AdminTodoViewer from "@/src/components/AdminTodoViewer";
 // Amplify.configure(outputs);
 
 export default function App() {
@@ -36,7 +36,7 @@ export default function App() {
             <h1>Welcome {user?.signInDetails?.loginId}</h1>
             {isAdmin ? <AdminTodo /> : <UserTodo />}
             <button onClick={signOut}>Sign out</button>
-            <AdminPublicTodos />;
+            <AdminTodoViewer fileName="data.json" />
         </main>
     );
 }
