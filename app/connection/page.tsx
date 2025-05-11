@@ -13,7 +13,7 @@ export default function ConnectionPage() {
             {({ user, signOut }) => (
                 <main className="p-4">
                     <h1 className="text-xl font-bold mb-4">
-                        Uploader un fichier AdminTodo
+                        Page de connexion
                     </h1>
                     <p className="mb-2">Bienvenue, {user?.username}</p>
                     <button
